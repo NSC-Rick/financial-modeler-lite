@@ -1,0 +1,16 @@
+{
+  "business_name": "Sample Coffee Shop",
+  "starting_cash": 20000,
+  "average_monthly_revenue": 15000,
+  "monthly_growth_rate": 0.03,
+  "cogs_percent": 35,
+  "rent": 2000,
+  "payroll": 5000,
+  "utilities": 600,
+  "software": 200,
+  "miscellaneous": 400,
+  "owner_draw": 3000,
+  "monthly_loan_payment": 800,
+  "startup_costs": 10000,
+  "months": 12
+}
