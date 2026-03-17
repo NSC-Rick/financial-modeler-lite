@@ -136,3 +136,43 @@ def calculate_summary_metrics(projection_df):
     }
     
     return summary
+
+
+def analyze_financials(projection_df):
+    """
+    Analyze financial projection for key insights including profitability,
+    cash deficits, and funding requirements.
+    
+    Args:
+        projection_df (pd.DataFrame): Monthly projection data
+        
+    Returns:
+        dict: Analysis results with profitability month, deficit month, and funding required
+    """
+    results = {}
+    
+    # Profitability month - first month with positive net profit
+    profitable_month = None
+    for i, row in projection_df.iterrows():
+        if row["Net Profit"] > 0:
+            profitable_month = int(row["Month"])
+            break
+    
+    # Cash deficit detection - first month with negative cash
+    deficit_month = None
+    min_cash = projection_df["Ending Cash"].min()
+    
+    for i, row in projection_df.iterrows():
+        if row["Ending Cash"] < 0:
+            deficit_month = int(row["Month"])
+            break
+    
+    # Funding required - absolute value of minimum cash if negative
+    funding_required = abs(min_cash) if min_cash < 0 else 0
+    
+    results["profitable_month"] = profitable_month
+    results["deficit_month"] = deficit_month
+    results["funding_required"] = funding_required
+    results["min_cash"] = min_cash
+    
+    return results

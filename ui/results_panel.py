@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from model.financial_engine import analyze_financials
 
 
 def render_results_panel(projection_df, summary_metrics, break_even_revenue, business_name):
@@ -45,7 +46,7 @@ def render_results_panel(projection_df, summary_metrics, break_even_revenue, bus
     
     # Break-even analysis
     st.markdown("---")
-    st.subheader("Break-Even Analysis")
+    st.subheader("📈 Break-Even Analysis")
     
     avg_revenue = projection_df['Revenue'].mean()
     
@@ -61,6 +62,37 @@ def render_results_panel(projection_df, summary_metrics, break_even_revenue, bus
             f"⚠️ Your average monthly revenue (${avg_revenue:,.2f}) is "
             f"${gap:,.2f} below break-even"
         )
+    
+    # Advisor Insights
+    st.markdown("---")
+    st.subheader("💡 Advisor Insights")
+    
+    # Run financial analysis
+    analysis = analyze_financials(projection_df)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if analysis["profitable_month"]:
+            st.success(f"✅ Profitability begins in Month {analysis['profitable_month']}")
+        else:
+            st.warning("⚠️ No profitability within projection period")
+        
+        if analysis["deficit_month"]:
+            st.error(f"🚨 Cash deficit begins in Month {analysis['deficit_month']}")
+        else:
+            st.success("✅ No cash deficit detected")
+    
+    with col2:
+        st.metric(
+            "Estimated Funding Required",
+            f"${analysis['funding_required']:,.0f}"
+        )
+        
+        if analysis['funding_required'] > 0:
+            st.caption(f"Minimum cash balance: ${analysis['min_cash']:,.2f}")
+        else:
+            st.caption("Business is self-sustaining")
     
     # Projection Table
     st.markdown("---")
