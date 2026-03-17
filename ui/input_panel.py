@@ -13,113 +13,113 @@ def render_input_panel():
     st.sidebar.header("Financial Assumptions")
     
     # Business Basics
-    st.sidebar.subheader("Business Basics")
-    business_name = st.sidebar.text_input(
-        "Business Name",
-        value="My Business"
-    )
-    starting_cash = st.sidebar.number_input(
-        "Starting Cash ($)",
-        min_value=0.0,
-        value=20000.0,
-        step=1000.0
-    )
+    with st.sidebar.expander("Business Basics", expanded=False):
+        business_name = st.text_input(
+            "Business Name",
+            value="My Business"
+        )
+        starting_cash = st.number_input(
+            "Starting Cash ($)",
+            min_value=0.0,
+            value=20000.0,
+            step=1000.0
+        )
     
     # Revenue Assumptions
-    st.sidebar.subheader("Revenue Assumptions")
-    average_monthly_revenue = st.sidebar.number_input(
-        "Average Monthly Revenue ($)",
-        min_value=0.0,
-        value=15000.0,
-        step=500.0
-    )
-    monthly_growth_rate = st.sidebar.number_input(
-        "Monthly Growth Rate (%)",
-        min_value=-100.0,
-        max_value=100.0,
-        value=3.0,
-        step=0.5
-    ) / 100  # Convert to decimal
+    with st.sidebar.expander("Revenue Assumptions", expanded=False):
+        average_monthly_revenue = st.number_input(
+            "Average Monthly Revenue ($)",
+            min_value=0.0,
+            value=15000.0,
+            step=500.0
+        )
+        monthly_growth_rate = st.number_input(
+            "Monthly Growth Rate (%)",
+            min_value=-100.0,
+            max_value=100.0,
+            value=3.0,
+            step=0.5
+        ) / 100  # Convert to decimal
     
     # Cost Structure
-    st.sidebar.subheader("Cost Structure")
-    cogs_percent = st.sidebar.number_input(
-        "COGS (% of Revenue)",
-        min_value=0.0,
-        max_value=100.0,
-        value=35.0,
-        step=1.0
-    )
+    with st.sidebar.expander("Cost Structure", expanded=False):
+        cogs_percent = st.number_input(
+            "COGS (% of Revenue)",
+            min_value=0.0,
+            max_value=100.0,
+            value=35.0,
+            step=1.0
+        )
     
     # Expense Assumptions
-    st.sidebar.subheader("Expense Assumptions")
-    rent = st.sidebar.number_input(
-        "Rent ($)",
-        min_value=0.0,
-        value=2000.0,
-        step=100.0
-    )
-    payroll = st.sidebar.number_input(
-        "Payroll ($)",
-        min_value=0.0,
-        value=5000.0,
-        step=500.0
-    )
-    utilities = st.sidebar.number_input(
-        "Utilities ($)",
-        min_value=0.0,
-        value=600.0,
-        step=50.0
-    )
-    software = st.sidebar.number_input(
-        "Software ($)",
-        min_value=0.0,
-        value=200.0,
-        step=50.0
-    )
-    miscellaneous = st.sidebar.number_input(
-        "Miscellaneous ($)",
-        min_value=0.0,
-        value=400.0,
-        step=50.0
-    )
+    with st.sidebar.expander("Expense Assumptions", expanded=False):
+        rent = st.number_input(
+            "Rent ($)",
+            min_value=0.0,
+            value=2000.0,
+            step=100.0
+        )
+        payroll = st.number_input(
+            "Payroll ($)",
+            min_value=0.0,
+            value=5000.0,
+            step=500.0
+        )
+        utilities = st.number_input(
+            "Utilities ($)",
+            min_value=0.0,
+            value=600.0,
+            step=50.0
+        )
+        software = st.number_input(
+            "Software ($)",
+            min_value=0.0,
+            value=200.0,
+            step=50.0
+        )
+        miscellaneous = st.number_input(
+            "Miscellaneous ($)",
+            min_value=0.0,
+            value=400.0,
+            step=50.0
+        )
     
     # Owner Compensation
-    st.sidebar.subheader("Owner Compensation")
-    owner_draw = st.sidebar.number_input(
-        "Owner Draw ($)",
-        min_value=0.0,
-        value=3000.0,
-        step=500.0
-    )
+    with st.sidebar.expander("Owner Compensation", expanded=False):
+        owner_draw = st.number_input(
+            "Owner Draw ($)",
+            min_value=0.0,
+            value=3000.0,
+            step=500.0
+        )
     
     # Debt
-    st.sidebar.subheader("Debt")
-    monthly_loan_payment = st.sidebar.number_input(
-        "Monthly Loan Payment ($)",
-        min_value=0.0,
-        value=800.0,
-        step=100.0
-    )
+    with st.sidebar.expander("Debt", expanded=False):
+        monthly_loan_payment = st.number_input(
+            "Monthly Loan Payment ($)",
+            min_value=0.0,
+            value=800.0,
+            step=100.0
+        )
     
     # Startup Costs
-    st.sidebar.subheader("Startup Costs")
-    startup_costs = st.sidebar.number_input(
-        "One-Time Startup Costs ($)",
-        min_value=0.0,
-        value=10000.0,
-        step=1000.0
-    )
+    with st.sidebar.expander("Startup Costs", expanded=False):
+        startup_costs = st.number_input(
+            "One-Time Startup Costs ($)",
+            min_value=0.0,
+            value=10000.0,
+            step=1000.0
+        )
     
     # Projection Settings
-    st.sidebar.subheader("Projection Length")
-    months = st.sidebar.number_input(
-        "Number of Months",
-        min_value=1,
-        max_value=60,
-        value=12,
-        step=1
-    )
+    with st.sidebar.expander("Projection Length", expanded=False):
+        months = st.number_input(
+            "Number of Months",
+            min_value=1,
+            max_value=60,
+            value=12,
+            step=1
+        )
     
     # Load Sample Data Button
     st.sidebar.markdown("---")
